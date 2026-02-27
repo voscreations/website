@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vos Créations - Portfolio Samples</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<style>
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #111;
+  color: white;
+}
+h1 {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 2.5rem;
+  text-shadow: 0 0 5px #ff006e, 0 0 10px #ff3399;
+}
+
+/* Gallery Grid */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto 50px;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 5px #ff006e, 0 0 10px #ff3399;
+}
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #ff006e, 0 0 20px #ff3399;
+}
+
+/* Back Button */
+.back-btn {
+  display: block;
+  width: 180px;
+  margin: 0 auto 30px;
+  padding: 12px 20px;
+  background: #0066ff;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.back-btn:hover {
+  background: #3399ff;
+}
+
+/* Mobile Adjustments */
+@media screen and (max-width:600px){
+  h1 {font-size: 2rem;}
+}
+</style>
+</head>
+<body>
+
+<h1>Portfolio Samples</h1>
+
+<!-- Gallery Grid -->
+<div class="gallery">
+  <img src="images/20260225_114854.png" alt="Sample 1">
+  <img src="images/IMG-20260226-WA0035.jpg" alt="Sample 2">
+  <img src="images/FLYER_023017.png" alt="Sample 3">
+  <img src="images/8d1d7efb4c4d3325ba839260621868b5.jpg" alt="Sample 4">
+  <img src="images/7d15f18c2a9265367ef0bae5acd27946.jpg" alt="Sample 5">
+  <img src="images/6355f54bb3e75e60404f2aefabec1a00.jpg" alt="Sample 6">
+</div>
+
+<!-- Back to Portfolio -->
+<a href="portfolio.html" class="back-btn">Back to Portfolio</a>
+
+</body>
+  </html>
