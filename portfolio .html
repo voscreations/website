@@ -16,7 +16,7 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
   width:100%;
   height:auto;
   min-height:100%;
-  object-fit:contain;
+  object-fit:cover;
   z-index:-2;
 }
 .overlay{
@@ -85,7 +85,7 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
 /* Portfolio Grid */
 .portfolio-container{
   position:absolute;
-  top:30%;
+  top:35%;
   left:50%;
   transform:translateX(-50%);
   width:90%;
@@ -94,7 +94,7 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
   gap:15px;
-  padding-bottom:80px; /* spacing at bottom */
+  padding-bottom:80px;
 }
 .portfolio-container img{
   width:100%;
@@ -106,7 +106,7 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
   transform:scale(1.05);
 }
 
-/* Modal / Lightbox */
+/* Lightbox / Modal */
 .modal{
   display:none;
   position:fixed;
@@ -129,8 +129,8 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
 /* Bouncing VC Ball */
 .vc-ball{
   position:absolute;
-  width:90px;
-  height:90px;
+  width:80px;
+  height:80px;
   background:white;
   border-radius:50%;
   display:flex;
@@ -163,6 +163,7 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
 @media screen and (max-width:600px){
   .page-title{font-size:8vw;}
   .vc-ball{width:50px;height:50px;font-size:1.2rem;}
+  .menu-icon{font-size:28px;}
 }
 </style>
 </head>
@@ -192,21 +193,11 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
 
 <!-- Portfolio Grid -->
 <div class="portfolio-container">
-  <a href="#img1"><img src="20260225_114854.png" alt=""></a>
-  <a href="#img2"><img src="IMG-20260226-WA0035.jpg" alt=""></a>
-  <a href="#img3"><img src="FLYER_023017.png" alt=""></a>
-  <a href="#img4"><img src="8d1d7efb4c4d3325ba839260621868b5.jpg" alt=""></a>
-  <a href="#img5"><img src="7d15f18c2a9265367ef0bae5acd27946.jpg" alt=""></a>
-  <a href="#img6"><img src="6355f54bb3e75e60404f2aefabec1a00.jpg" alt=""></a>
+  <a href="#img1"><img src="Images.png" alt="Portfolio Image 1"></a>
 </div>
 
-<!-- Lightbox Modals -->
-<div id="img1" class="modal"><a href="#"><img src="20260225_114854.png"></a></div>
-<div id="img2" class="modal"><a href="#"><img src="IMG-20260226-WA0035.jpg"></a></div>
-<div id="img3" class="modal"><a href="#"><img src="FLYER_023017.png"></a></div>
-<div id="img4" class="modal"><a href="#"><img src="8d1d7efb4c4d3325ba839260621868b5.jpg"></a></div>
-<div id="img5" class="modal"><a href="#"><img src="7d15f18c2a9265367ef0bae5acd27946.jpg"></a></div>
-<div id="img6" class="modal"><a href="#"><img src="6355f54bb3e75e60404f2aefabec1a00.jpg"></a></div>
+<!-- Lightbox / Modal -->
+<div id="img1" class="modal"><a href="#"><img src="Images.png" alt=""></a></div>
 
 <!-- Bouncing VC Ball -->
 <div class="vc-ball" id="vcBall">VC</div>
@@ -223,8 +214,8 @@ function toggleMenu(){
 
 /* Bouncing VC Ball */
 const ball=document.getElementById('vcBall');
-let posX=Math.random()*(window.innerWidth-90);
-let posY=Math.random()*(window.innerHeight-90);
+let posX=Math.random()*(window.innerWidth-80);
+let posY=Math.random()*(window.innerHeight-80);
 let velX=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
 let velY=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
 
@@ -241,4 +232,4 @@ moveBall();
 </script>
 
 </body>
-  </html>
+</html>
