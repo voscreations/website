@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voscreations</title>
+<title>Vos Créations</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Montserrat:wght@600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -21,20 +22,80 @@ height:100%;
 width:100%;
 overflow-x:hidden;
 font-family:'Montserrat',sans-serif;
-background:#000;
+background:black;
 }
 
-/* FADE IN */
+/* FADE IN BODY */
 body{
 opacity:0;
 animation:fadeIn 1.2s ease forwards;
 }
-
 @keyframes fadeIn{
 to{opacity:1;}
 }
 
+/* ====================== */
+/* TOP NAVIGATION BAR */
+/* ====================== */
+.top-bar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:70px;
+background:black;
+display:flex;
+align-items:center;
+justify-content:flex-end;
+padding-right:25px;
+z-index:10;
+border-bottom:3px solid white;
+box-shadow:0 5px 15px white;
+}
+
+/* Hamburger Icon */
+.menu-icon{
+width:35px;
+height:25px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+cursor:pointer;
+}
+
+.menu-icon div{
+height:4px;
+background:white;
+border-radius:2px;
+}
+
+/* Side Menu */
+.side-menu{
+position:fixed;
+top:0;
+right:-250px;
+width:250px;
+height:100%;
+background:#111;
+padding-top:90px;
+transition:0.4s ease;
+z-index:20;
+}
+
+.side-menu a{
+display:block;
+color:white;
+padding:15px 30px;
+text-decoration:none;
+}
+
+.side-menu a:hover{
+background:red;
+}
+
+/* ====================== */
 /* VIDEO BACKGROUND */
+/* ====================== */
 .video-bg{
 position:fixed;
 top:0;
@@ -42,10 +103,9 @@ left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-z-index:-1;
+z-index:-2;
 }
 
-/* DARK OVERLAY */
 .overlay{
 position:fixed;
 top:0;
@@ -56,7 +116,9 @@ background:rgba(0,0,0,0.6);
 z-index:-1;
 }
 
-/* MAIN CONTAINER */
+/* ====================== */
+/* MAIN CONTENT */
+/* ====================== */
 .container{
 display:flex;
 flex-direction:column;
@@ -67,20 +129,22 @@ text-align:center;
 padding:20px;
 }
 
-/* LOGO */
+/* GRAFFITI LOGO */
 .logo{
-font-family:'Playfair Display',serif;
-font-size:clamp(32px,8vw,60px);
-color:#fff;
-text-shadow:0 0 15px red;
+font-family:'Permanent Marker',cursive;
+font-size:clamp(40px,10vw,80px);
+color:white;
+animation:glow 2s infinite alternate;
 letter-spacing:2px;
 margin-bottom:10px;
+transition:0.3s;
 }
 
 /* TAGLINE */
 .tagline{
+font-family:'Montserrat',sans-serif;
 font-size:clamp(14px,4vw,20px);
-color:#fff;
+color:white;
 margin-top:5px;
 max-width:90%;
 }
@@ -104,8 +168,28 @@ color:white;
 transform:scale(1.05);
 }
 
-a{
-text-decoration:none;
+/* GLOW ANIMATION COLORS */
+@keyframes glow{
+0%{text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;}
+20%{text-shadow:0 0 10px #00ff00,0 0 20px #00ff00;}
+40%{text-shadow:0 0 10px #0000ff,0 0 20px #0000ff;}
+60%{text-shadow:0 0 10px #ffff00,0 0 20px #ffff00;}
+80%{text-shadow:0 0 10px #ff00ff,0 0 20px #ff00ff;}
+100%{text-shadow:0 0 10px #00ffff,0 0 20px #00ffff;}
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:600px){
+.logo{
+font-size:clamp(32px,12vw,60px);
+}
+.tagline{
+font-size:clamp(12px,4vw,18px);
+}
+.main-btn{
+font-size:14px;
+padding:10px 25px;
+}
 }
 
 </style>
@@ -113,23 +197,37 @@ text-decoration:none;
 
 <body>
 
+<!-- VIDEO BACKGROUND -->
 <video autoplay muted loop class="video-bg" id="bgVideo"></video>
 <div class="overlay"></div>
 
-<div class="container">
-    <div class="logo">Voscreations</div>
-    <div class="tagline">
-        Creative Design • Branding • Digital Visuals
-    </div>
+<!-- TOP NAV BAR -->
+<div class="top-bar">
+  <div class="menu-icon" id="menuToggle">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
 
-    <a href="services.html">
-        <button class="main-btn">View Services</button>
-    </a>
+<!-- SIDE MENU -->
+<div class="side-menu" id="sideMenu">
+  <a href="services.html">Services</a>
+  <a href="order.html">Order</a>
+  <a href="portfolio.html">Portfolio</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <div class="logo">Vos Créations</div>
+  <div class="tagline">Your everyday go-to designer</div>
+  <a href="services.html">
+    <button class="main-btn">View Services</button>
+  </a>
 </div>
 
 <script>
-
-// YOUR EXACT VIDEO FILES
+// VIDEO ROTATION
 const videos = [
 "backgroundvideo1.mp4",
 "backgroundvideo2.mp4",
@@ -140,10 +238,20 @@ const videos = [
 "backgroundvideo7.mp4"
 ];
 
-// RANDOM VIDEO ON REFRESH
-const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+const randomVideo = videos[Math.floor(Math.random()*videos.length)];
 document.getElementById("bgVideo").src = randomVideo;
 
+// SIDE MENU TOGGLE
+const menuToggle = document.getElementById("menuToggle");
+const sideMenu = document.getElementById("sideMenu");
+
+menuToggle.addEventListener('click', ()=>{
+  if(sideMenu.style.right === "0px"){
+    sideMenu.style.right = "-250px";
+  }else{
+    sideMenu.style.right = "0px";
+  }
+});
 </script>
 
 </body>
