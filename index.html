@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vos Créations</title>
 
-<!-- Fonts -->
+<!-- Graffiti Font -->
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
 <style>
@@ -28,59 +28,29 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
   top:0; left:0;
   width:100%;
   height:100%;
-  background: linear-gradient(135deg, rgba(255,0,150,0.2), rgba(0,204,255,0.2));
+  background: linear-gradient(135deg, rgba(0,150,255,0.2), rgba(0,204,255,0.2));
   z-index:-1;
 }
 
-/* Company Name Container */
-.brand-container{
-  position:absolute;
-  top:45%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  z-index:1;
-  display:flex;
-}
-
-/* Each letter span */
-.brand-container span{
-  font-size:6rem;
-  color:#ff006e;
-  text-shadow: 3px 3px 10px #00fff2;
-  opacity:0;
-  display:inline-block;
-  animation:letterIn 1s forwards;
-}
-
-/* Slogan */
-.slogan{
-  position:absolute;
-  top:58%;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:1.5rem;
-  color:white;
-  opacity:0;
-  animation:fadeInSlogan 2s forwards;
-  animation-delay:3s;
-  z-index:1;
-}
-
-/* Letter animation from random directions */
-@keyframes letterIn{
-  0%{opacity:0; transform:translate(var(--x), var(--y)) rotate(-30deg);}
-  60%{opacity:1; transform:translate(0,0) rotate(10deg);}
-  100%{opacity:1; transform:translate(0,0) rotate(0deg);}
-}
-
-/* Hamburger menu */
-.menu-icon{
+/* Top row menu background */
+.menu-row{
   position:fixed;
-  top:20px;
-  right:20px;
-  font-size:28px;
-  color:white;
+  top:0;
+  left:0;
+  width:100%;
+  height:70px;
+  background: #0066ff; /* blue top bar */
   z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding-right:20px;
+}
+
+/* Hamburger menu bigger */
+.menu-icon{
+  font-size:36px; /* bigger */
+  color:white;
   cursor:pointer;
 }
 
@@ -105,6 +75,69 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 }
 .side-menu a:hover{background:#ff006e;}
 
+/* Company Name Container */
+.brand-container{
+  position:absolute;
+  top:40%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  z-index:1;
+  display:flex;
+}
+
+/* Each letter */
+.brand-container span{
+  font-size:6rem;
+  color:#ff006e;
+  text-shadow: 3px 3px 10px #00fff2;
+  opacity:0;
+  display:inline-block;
+  animation:letterIn 1s forwards;
+}
+
+/* Slogan */
+.slogan{
+  position:absolute;
+  top:55%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:1.5rem;
+  color:white;
+  opacity:0;
+  animation:fadeInSlogan 2s forwards;
+  animation-delay:3s;
+  z-index:1;
+}
+
+/* Letter animation from random directions */
+@keyframes letterIn{
+  0%{opacity:0; transform:translate(var(--x), var(--y)) rotate(-20deg);}
+  60%{opacity:1; transform:translate(0,0) rotate(5deg);}
+  100%{opacity:1; transform:translate(0,0) rotate(0deg);}
+}
+
+@keyframes fadeInSlogan{
+  0%{opacity:0;}
+  100%{opacity:1;}
+}
+
+/* VC Ball */
+.vc-ball{
+  position:absolute;
+  width:80px;
+  height:80px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:1.8rem;
+  color:#0066ff;
+  font-weight:bold;
+  text-shadow:0 0 5px #0066ff,0 0 10px #00ccff;
+  z-index:2;
+}
+
 /* WhatsApp button */
 .whatsapp{
   position:fixed;
@@ -118,13 +151,6 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
   font-weight:bold;
   z-index:5;
 }
-
-/* Basketball style */
-.basketball{
-  position:absolute;
-  width:80px;
-  z-index:2;
-}
 </style>
 </head>
 <body>
@@ -136,23 +162,27 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 
 <div class="overlay"></div>
 
-<!-- Bouncing Basketball -->
-<img src="basketball.png" class="basketball" id="basketball">
+<!-- Top Row -->
+<div class="menu-row">
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+</div>
 
-<!-- Company Name Letter by Letter -->
-<div class="brand-container" id="brandContainer"></div>
-
-<!-- Slogan -->
-<p class="slogan">Your everyday go-to designer</p>
-
-<!-- Hamburger Menu -->
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
+<!-- Side Menu -->
 <div class="side-menu" id="menu">
   <a href="index.html">Home</a>
   <a href="services.html">Services</a>
   <a href="portfolio.html">Portfolio</a>
   <a href="order.html">Order</a>
 </div>
+
+<!-- Company Name -->
+<div class="brand-container" id="brandContainer"></div>
+
+<!-- Slogan -->
+<p class="slogan">Your everyday go-to designer</p>
+
+<!-- Bouncing VC Ball -->
+<div class="vc-ball" id="vcBall">VC</div>
 
 <!-- WhatsApp -->
 <a href="https://wa.me/2349069205351" class="whatsapp" target="_blank">WhatsApp</a>
@@ -172,22 +202,19 @@ function toggleMenu(){
 const brandText = "Vos Créations";
 const brandContainer = document.getElementById('brandContainer');
 
-brandText.split('').forEach((letter, index)=>{
+brandText.split('').forEach((letter,index)=>{
   const span = document.createElement('span');
   span.textContent = letter;
-  
-  // Random X and Y for animation
-  let xOffset = (Math.random()*200 - 100) + "px"; // -100 to 100
+  let xOffset = (Math.random()*200 - 100) + "px"; 
   let yOffset = (Math.random()*200 - 100) + "px";
   span.style.setProperty('--x', xOffset);
   span.style.setProperty('--y', yOffset);
-  
-  span.style.animationDelay = `${index * 0.2}s`; // stagger letters
+  span.style.animationDelay = `${index*0.2}s`;
   brandContainer.appendChild(span);
 });
 
-/* Bouncing Basketball */
-const ball = document.getElementById('basketball');
+/* Bouncing VC Ball */
+const ball = document.getElementById('vcBall');
 let posX = Math.random() * (window.innerWidth - 80);
 let posY = Math.random() * (window.innerHeight - 80);
 let velX = (Math.random()*3 +1) * (Math.random() <0.5 ? 1:-1);
@@ -210,4 +237,4 @@ moveBall();
 </script>
 
 </body>
-    </html>
+  </html>
