@@ -16,8 +16,9 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
   position:fixed;
   top:0; left:0;
   width:100%;
-  height:100%;
-  object-fit:cover;
+  height:auto;
+  min-height:100%;
+  object-fit:contain; /* fit entire video */
   z-index:-2;
 }
 .overlay{
@@ -96,7 +97,7 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
   gap:20px;
 }
 .service-item{
-  background:rgba(255,255,255,0.8);
+  background:rgba(255,255,255,0.85);
   color:#000;
   font-weight:700;
   padding:15px 20px;
@@ -104,6 +105,7 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
   font-size:1.2rem;
   cursor:pointer;
   transition:0.3s;
+  text-align:center;
 }
 .service-item:hover{
   transform:scale(1.05);
@@ -187,15 +189,15 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
 
 <!-- Services List -->
 <div class="services-container">
-  <div class="service-item">Logo Design</div>
-  <div class="service-item">Flyer & Poster Design</div>
-  <div class="service-item">Social Media Graphics</div>
-  <div class="service-item">Business Cards</div>
-  <div class="service-item">Web Design</div>
-  <div class="service-item">UI/UX Design</div>
-  <div class="service-item">Banner Ads</div>
-  <div class="service-item">Illustrations</div>
-  <div class="service-item">Branding Packages</div>
+  <div class="service-item" onclick="goToOrder('Logo Design')">Logo Design</div>
+  <div class="service-item" onclick="goToOrder('Flyer & Poster Design')">Flyer & Poster Design</div>
+  <div class="service-item" onclick="goToOrder('Social Media Graphics')">Social Media Graphics</div>
+  <div class="service-item" onclick="goToOrder('Business Cards')">Business Cards</div>
+  <div class="service-item" onclick="goToOrder('Web Design')">Web Design</div>
+  <div class="service-item" onclick="goToOrder('UI/UX Design')">UI/UX Design</div>
+  <div class="service-item" onclick="goToOrder('Banner Ads')">Banner Ads</div>
+  <div class="service-item" onclick="goToOrder('Illustrations')">Illustrations</div>
+  <div class="service-item" onclick="goToOrder('Branding Packages')">Branding Packages</div>
 </div>
 
 <!-- Bouncing VC Ball -->
@@ -209,6 +211,11 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
 function toggleMenu(){
   let menu=document.getElementById('menu');
   menu.style.right=(menu.style.right==='0px')?'-250px':'0';
+}
+
+/* Redirect to order page with pre-filled service */
+function goToOrder(serviceName){
+  window.location.href = `order.html?service=${encodeURIComponent(serviceName)}`;
 }
 
 /* Bouncing VC Ball */
@@ -228,5 +235,6 @@ function moveBall(){
 }
 moveBall();
 </script>
+
 </body>
-</html>
+                              </html>
