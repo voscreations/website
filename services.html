@@ -5,45 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vos Créations - Services</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', sans-serif;}
+body,html{
+  height:100%;
+  font-family:'Montserrat',sans-serif;
+  overflow-x:hidden;
+}
 
 /* Background Video */
 .video-bg{
   position:fixed;
-  top:0; left:0;
+  top:0;left:0;
   width:100%;
-  height:auto;
-  min-height:100%;
-  object-fit:contain;
+  height:100%;
+  object-fit:cover;
   z-index:-2;
 }
 .overlay{
-  position:absolute; top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.3);
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.4);
   z-index:-1;
 }
 
-/* Top Row */
+/* Top Bar */
 .menu-row{
   position:fixed;
-  top:0;
-  left:0;
+  top:0;left:0;
   width:100%;
   height:70px;
-  background:#000;
-  border-bottom:4px solid #fff;
-  box-shadow:0 0 15px #fff;
-  z-index:3;
+  background:black;
   display:flex;
   align-items:center;
   justify-content:flex-end;
   padding-right:20px;
+  z-index:5;
+  border-bottom:3px solid white;
 }
 .menu-icon{
-  font-size:36px;
+  font-size:30px;
   color:white;
   cursor:pointer;
 }
@@ -56,118 +59,125 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
   width:250px;
   height:100%;
   background:#111;
-  padding-top:60px;
+  padding-top:80px;
   transition:0.4s;
-  z-index:4;
+  z-index:6;
 }
 .side-menu a{
   display:block;
+  padding:15px 25px;
   color:white;
-  padding:15px 30px;
   text-decoration:none;
-  font-size:1.2rem;
 }
-.side-menu a:hover{background:#ff006e;}
+.side-menu a:hover{
+  background:#ff006e;
+}
 
-/* Page Title */
+/* Title */
 .page-title{
-  position:absolute;
-  top:15%;
-  width:100%;
+  margin-top:110px;
   text-align:center;
-  font-size:4vw;
-  font-weight:700;
+  font-size:6vw;
   color:white;
-  text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red;
-  z-index:2;
+  text-shadow:0 0 10px red;
 }
 
-/* Services List */
+/* Services Container */
 .services-container{
-  position:absolute;
-  top:30%;
-  left:50%;
-  transform:translateX(-50%);
-  width:90%;
-  max-width:400px;
-  z-index:2;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-  padding-bottom:80px; /* extra space after last row */
-}
-.service-item{
-  background:rgba(255,255,255,0.85);
-  color:#000;
-  font-weight:700;
-  padding:15px 20px;
-  border-radius:10px;
-  font-size:1.2rem;
-  cursor:pointer;
-  transition:0.3s;
-  text-align:center;
-}
-.service-item:hover{
-  transform:scale(1.05);
-  background:rgba(255,255,255,1);
+  margin-top:30px;
+  padding-bottom:80px;
 }
 
-/* Bouncing VC Ball */
+/* Service Card */
+.service-card{
+  width:85%;
+  max-width:420px;
+  margin:20px auto;
+  padding:20px;
+  background:rgba(0,0,0,0.7);
+  border-radius:15px;
+  text-align:center;
+  color:white;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+  transition:0.3s;
+  animation:fadeUp 0.8s ease forwards;
+}
+
+.service-card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px #00ccff;
+}
+
+/* Price */
+.price{
+  margin-top:8px;
+  font-size:0.9rem;
+  opacity:0.8;
+}
+
+/* Recommended Badge */
+.badge{
+  position:absolute;
+  top:10px;
+  right:-30px;
+  background:#ff006e;
+  color:white;
+  padding:5px 40px;
+  transform:rotate(45deg);
+  font-size:0.7rem;
+}
+
+/* Ripple Effect */
+.service-card span.ripple{
+  position:absolute;
+  border-radius:50%;
+  transform:scale(0);
+  animation:ripple 0.6s linear;
+  background:rgba(255,255,255,0.6);
+}
+
+/* Animations */
+@keyframes ripple{
+  to{
+    transform:scale(4);
+    opacity:0;
+  }
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* VC Ball */
 .vc-ball{
   position:absolute;
-  width:90px;
-  height:90px;
+  width:70px;
+  height:70px;
   background:white;
   border-radius:50%;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:2rem;
+  font-weight:bold;
   color:#0066ff;
-  font-weight:bold;
-  text-shadow:0 0 6px #0066ff,0 0 12px #00ccff;
-  z-index:5; /* in front now */
-  cursor:pointer;
-  user-select:none;
+  z-index:7;
 }
 
-/* WhatsApp */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:white;
-  padding:14px 20px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:bold;
-  z-index:6;
-}
-
-/* Mobile adjustments */
-@media screen and (max-width:600px){
-  .page-title{font-size:8vw;}
-  .service-item{font-size:1rem;padding:12px 15px;}
-  .vc-ball{width:50px;height:50px;font-size:1.2rem;}
-  .menu-icon{font-size:28px;}
-}
 </style>
 </head>
 <body>
 
-<!-- Background Video -->
 <video autoplay muted loop playsinline class="video-bg">
-  <source src="backgroundvideo2.mp4" type="video/mp4">
+  <source src="backgroundvideo3.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
-<!-- Top Row -->
 <div class="menu-row">
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
 </div>
 
-<!-- Side Menu -->
 <div class="side-menu" id="menu">
   <a href="index.html">Home</a>
   <a href="services.html">Services</a>
@@ -175,57 +185,79 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
   <a href="order.html">Order</a>
 </div>
 
-<!-- Page Title -->
-<h1 class="page-title">Services</h1>
+<h1 class="page-title">Our Services</h1>
 
-<!-- Services List -->
 <div class="services-container">
-  <div class="service-item" onclick="goToOrder('Logo Design')">Logo Design</div>
-  <div class="service-item" onclick="goToOrder('Flyer & Poster Design')">Flyer & Poster Design</div>
-  <div class="service-item" onclick="goToOrder('Social Media Graphics')">Social Media Graphics</div>
-  <div class="service-item" onclick="goToOrder('Business Cards')">Business Cards</div>
-  <div class="service-item" onclick="goToOrder('Web Design')">Web Design</div>
-  <div class="service-item" onclick="goToOrder('UI/UX Design')">UI/UX Design</div>
-  <div class="service-item" onclick="goToOrder('Banner Ads')">Banner Ads</div>
-  <div class="service-item" onclick="goToOrder('Illustrations')">Illustrations</div>
-  <div class="service-item" onclick="goToOrder('Branding Packages')">Branding Packages</div>
+
+<a href="order.html?service=Graphics%20Design" class="service-card">
+  <div class="badge">Recommended</div>
+  Graphics Design
+  <div class="price">Starting from ₦10,000</div>
+</a>
+
+<a href="order.html?service=Logo%20Design" class="service-card">
+  Logo Design
+  <div class="price">Starting from ₦15,000</div>
+</a>
+
+<a href="order.html?service=Flyer%20Design" class="service-card">
+  Flyer Design
+  <div class="price">Starting from ₦8,000</div>
+</a>
+
+<a href="order.html?service=Web%20Design" class="service-card">
+  <div class="badge">Hot</div>
+  Web Design
+  <div class="price">Starting from ₦40,000</div>
+</a>
+
+<a href="order.html?service=Brand%20Identity%20Design" class="service-card">
+  Brand Identity Design
+  <div class="price">Starting from ₦25,000</div>
+</a>
+
+<a href="order.html?service=UI/UX%20Design" class="service-card">
+  UI/UX Design
+  <div class="price">Starting from ₦30,000</div>
+</a>
+
 </div>
 
-<!-- Bouncing VC Ball -->
 <div class="vc-ball" id="vcBall">VC</div>
 
-<!-- WhatsApp -->
-<a href="https://wa.me/2349069205351" class="whatsapp" target="_blank">WhatsApp</a>
-
 <script>
-/* Side Menu Toggle */
+
+/* Side Menu */
 function toggleMenu(){
   let menu=document.getElementById('menu');
   menu.style.right=(menu.style.right==='0px')?'-250px':'0';
 }
 
-/* Redirect to order page with pre-filled service */
-function goToOrder(serviceName){
-  window.location.href = `order.html?service=${encodeURIComponent(serviceName)}`;
-}
+/* Ripple Effect */
+document.querySelectorAll('.service-card').forEach(card=>{
+  card.addEventListener('click',function(e){
+    const circle=document.createElement("span");
+    circle.classList.add("ripple");
+    const rect=card.getBoundingClientRect();
+    circle.style.left=(e.clientX-rect.left)+"px";
+    circle.style.top=(e.clientY-rect.top)+"px";
+    card.appendChild(circle);
+    setTimeout(()=>circle.remove(),600);
+  });
+});
 
-/* Bouncing VC Ball Animation */
+/* Bouncing VC Ball */
 const ball=document.getElementById('vcBall');
-let posX=Math.random()*(window.innerWidth-90);
-let posY=Math.random()*(window.innerHeight-90);
-let velX=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
-let velY=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
-
-function moveBall(){
-  posX+=velX; posY+=velY;
-  if(posX<0||posX+ball.offsetWidth>window.innerWidth) velX*=-1;
-  if(posY<0||posY+ball.offsetHeight>window.innerHeight) velY*=-1;
-  velX+=(Math.random()-0.5)*0.2;
-  velY+=(Math.random()-0.5)*0.2;
-  ball.style.transform=`translate(${posX}px, ${posY}px)`;
-  requestAnimationFrame(moveBall);
+let x=100,y=200,dx=2,dy=2;
+function move(){
+  x+=dx;y+=dy;
+  if(x<0||x+70>window.innerWidth)dx*=-1;
+  if(y<0||y+70>window.innerHeight)dy*=-1;
+  ball.style.transform=`translate(${x}px,${y}px)`;
+  requestAnimationFrame(move);
 }
-moveBall();
+move();
+
 </script>
 
 </body>
